@@ -1,0 +1,9 @@
+lovelace:
+  mode: yaml
+  dashboards:
+    empty-dashboard:
+      mode: yaml
+      title: Empty
+      icon: mdi:file-outline
+      show_in_sidebar: true
+      filename: dashboards/empty.yaml
