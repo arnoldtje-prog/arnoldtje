@@ -1450,6 +1450,9 @@ sections:
               padding: 10px !important;
               overflow: hidden !important;
             }
+        media_player: media_player.woonkamer
+        speaker_group: all_speakers
+        show_group_icon: true
         player:
           artworkAsBackground: true
           artworkAsBackgroundBlur: 27
