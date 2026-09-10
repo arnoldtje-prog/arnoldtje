@@ -1,0 +1,2106 @@
+background:
+  alignment: center
+  attachment: fixed
+  image:
+    media_content_id: media-source://image_upload/fea2d001240f7f03c292ca6b112dce7c
+    media_content_type: image/jpeg
+    metadata:
+      media_class: image
+      navigateIds:
+        - {}
+        - media_content_id: media-source://image_upload
+          media_content_type: app
+      thumbnail: /api/image/serve/fea2d001240f7f03c292ca6b112dce7c/256x256
+      title: wallpapersden.com_amazing-milky-way-at-lakside_1920x1080.jpg
+  opacity: 50
+  repeat: no-repeat
+  size: cover
+badges:
+  - card_mod:
+      style: |
+        :host {
+          position: fixed !important;
+          top: 12px !important;
+          right: 12px !important;
+          z-index: 999999 !important;
+        }
+
+        ha-card {
+          margin: 0 !important;
+        }
+    entity: input_boolean.bevestig_rolluik_open
+    icon: mdi:motion-sensor
+    name: Beweging zolder
+    show_icon: true
+    show_name: true
+    show_state: false
+    state:
+      - styles:
+          card:
+            - display: none
+        value: 'off'
+    styles:
+      card:
+        - width: 220px
+        - height: 42px
+        - padding: 6px 12px
+        - background: '#ffffff'
+        - border: '1px solid #dddddd'
+        - border-radius: 8px
+        - box-shadow: 0 2px 8px rgba(0,0,0,0.18)
+        - cursor: pointer
+      grid:
+        - grid-template-areas: '"i n"'
+        - grid-template-columns: 28px 1fr
+        - column-gap: 8px
+      icon:
+        - width: 20px
+        - color: '#4caf50'
+      name:
+        - justify-self: start
+        - font-size: 13px
+        - font-weight: 600
+        - color: '#222222'
+    tap_action:
+      action: perform-action
+      perform_action: script.bevestig_open_rolluik
+    type: custom:button-card
+  - type: custom:button-card
+    entity: conversation.home_assistant
+    show_name: false
+    show_state: false
+    icon: mdi:microphone
+    tap_action:
+      action: assist
+    custom_fields:
+      glow: |
+        <div class="glass-glow"
+             onmousemove="
+               const r=this.getBoundingClientRect();
+               this.style.setProperty('--mx', (event.clientX-r.left)+'px');
+               this.style.setProperty('--my', (event.clientY-r.top)+'px');
+             ">
+        </div>
+    styles:
+      card:
+        - width: 3cm
+        - height: 1cm
+        - border-radius: 10px
+        - background: rgba(255,255,255,0.12)
+        - backdrop-filter: blur(14px)
+        - -webkit-backdrop-filter: blur(14px)
+        - border: 1px solid rgba(255,255,255,0.35)
+        - box-shadow: 0 4px 16px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.4)
+        - transition: >-
+            transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s
+            ease
+        - position: relative
+        - overflow: hidden
+        - display: flex
+        - align-items: center
+        - justify-content: center
+      icon:
+        - color: white
+        - '--mdc-icon-size: 22px'
+      custom_fields:
+        glow:
+          - position: absolute
+          - inset: 0
+          - background: >
+              radial-gradient(circle at var(--mx,50%) var(--my,50%),
+              rgba(255,255,255,0.35), transparent 60%)
+          - opacity: 0
+          - transition: opacity 0.2s ease
+    extra_styles: |
+      ha-card:hover {
+        transform: scale(1.08);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.5);
+      }
+      ha-card:hover .glass-glow {
+        opacity: 1;
+      }
+  - type: custom:button-card
+    entity: sensor.weer_thuis_temperatuur
+    name: Buiten
+    icon: mdi:thermometer
+    show_name: true
+    show_icon: true
+    show_state: true
+    styles:
+      card:
+        - width: 3cm
+        - height: 1cm
+        - border-radius: 10px
+        - background: rgba(255,255,255,0.12)
+        - backdrop-filter: blur(14px)
+        - -webkit-backdrop-filter: blur(14px)
+        - border: 1px solid rgba(255,255,255,0.35)
+        - box-shadow: 0 4px 16px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.4)
+        - transition: >-
+            transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s
+            ease
+        - position: relative
+        - overflow: hidden
+      grid:
+        - grid-template-areas: '"i n" "i s"'
+        - grid-template-columns: 22px 1fr
+        - grid-template-rows: 1fr 1fr
+        - column-gap: 8px
+      icon:
+        - width: 18px
+        - color: white
+      name:
+        - justify-self: start
+        - font-size: 11px
+        - font-weight: 600
+        - color: rgba(255,255,255,.7)
+      state:
+        - justify-self: start
+        - font-size: 13px
+        - font-weight: 600
+        - color: white
+    extra_styles: |
+      ha-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.5);
+      }
+  - type: custom:button-card
+    entity: sensor.weer_thuis_windsnelheid
+    name: Wind Snelheid
+    icon: mdi:weather-rainy
+    show_name: true
+    show_icon: true
+    show_state: true
+    styles:
+      card:
+        - width: 3cm
+        - height: 1cm
+        - border-radius: 10px
+        - background: rgba(255,255,255,0.12)
+        - backdrop-filter: blur(14px)
+        - -webkit-backdrop-filter: blur(14px)
+        - border: 1px solid rgba(255,255,255,0.35)
+        - box-shadow: 0 4px 16px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.4)
+        - transition: >-
+            transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s
+            ease
+        - position: relative
+        - overflow: hidden
+      grid:
+        - grid-template-areas: '"i n" "i s"'
+        - grid-template-columns: 22px 1fr
+        - grid-template-rows: 1fr 1fr
+        - column-gap: 8px
+      icon:
+        - width: 18px
+        - color: white
+      name:
+        - justify-self: start
+        - font-size: 11px
+        - font-weight: 600
+        - color: rgba(255,255,255,.7)
+      state:
+        - justify-self: start
+        - font-size: 13px
+        - font-weight: 600
+        - color: white
+    extra_styles: |
+      ha-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.5);
+      }
+  - type: custom:button-card
+    entity: weather.weer_thuis_verwachtingen
+    name: Weer
+    icon: mdi:history
+    show_name: true
+    show_icon: true
+    show_state: true
+    styles:
+      card:
+        - width: 3cm
+        - height: 1cm
+        - border-radius: 10px
+        - background: rgba(255,255,255,0.12)
+        - backdrop-filter: blur(14px)
+        - -webkit-backdrop-filter: blur(14px)
+        - border: 1px solid rgba(255,255,255,0.35)
+        - box-shadow: 0 4px 16px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.4)
+        - transition: >-
+            transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s
+            ease
+        - position: relative
+        - overflow: hidden
+      grid:
+        - grid-template-areas: '"i n" "i s"'
+        - grid-template-columns: 22px 1fr
+        - grid-template-rows: 1fr 1fr
+        - column-gap: 8px
+      icon:
+        - width: 18px
+        - color: white
+      name:
+        - justify-self: start
+        - font-size: 11px
+        - font-weight: 600
+        - color: rgba(255,255,255,.7)
+      state:
+        - justify-self: start
+        - font-size: 13px
+        - font-weight: 600
+        - color: white
+    extra_styles: |
+      ha-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.5);
+      }
+cards: []
+dense_section_placement: false
+footer:
+  card:
+    desktop:
+      min_width: 768
+      mode: floating
+      position: bottom
+      show_labels: false
+      show_popup_label_backgrounds: true
+    layout:
+      auto_padding:
+        desktop_px: 115
+        enabled: true
+        mobile_px: 80
+    mobile:
+      mode: floating
+      show_labels: true
+    routes:
+      - icon: mdi:home
+        label: Home
+        url: Trashdashh
+      - icon: mdi:flash
+        label: Stroom
+        url: stroom
+      - icon: mdi:gamepad
+        label: Gamepad
+        url: homeopdrachten
+      - class_name: |-
+          [[[
+            const p = window.location.pathname;
+            return (
+              p.includes('airco') ||
+              p.includes('aircoslaapkamer') ||
+              p.includes('aircozolder')
+            ) ? 'sub-active' : '';
+          ]]]
+        hold_action:
+          action: open-popup
+        icon: mdi:air-conditioner
+        label: Airco
+        popup:
+          - icon: mdi:sofa
+            label: Woonkamer
+            url: airco
+          - icon: mdi:bed
+            label: Kamer
+            url: aircoslaapkamer
+          - icon: mdi:home-roof
+            label: Zolder
+            url: aircozolder
+        tap_action:
+          action: open-popup
+        url: '#'
+      - class_name: |-
+          [[[
+            const p = window.location.pathname;
+            return (
+              p.includes('jose-dashboard') ||
+              p.includes('TrashdashhPapi') ||
+              p.includes('ruben-dashboard')
+            ) ? 'sub-active' : '';
+          ]]]
+        hold_action:
+          action: open-popup
+        icon: mdi:account
+        label: Account
+        popup:
+          - icon: mdi:heart
+            label: Woonkamer (Hartje)
+            url: jose-dashboard
+          - icon: mdi:tennis
+            label: Kamer (Racket)
+            url: TrashdashhPapi
+          - icon: mdi:soccer
+            label: Zolder (Voetbal)
+            url: ruben-dashboard
+        tap_action:
+          action: open-popup
+        url: '#'
+      - icon: mdi:chart-line
+        label: Statistieken
+        url: statistieken
+    styles: |
+      :host {
+        --navbar-route-icon-color: #333333 !important;
+        --navbar-route-icon-color-active: #808080 !important;
+        --primary-color: #808080 !important;
+        --accent-color: #808080 !important;
+      }
+
+      /* =========================================================
+         BASIS
+         ========================================================= */
+
+      .navbar {
+        --navbar-background-color: transparent !important;
+        --navbar-border-radius: 24px;
+        --navbar-route-icon-size: 25px;
+        --navbar-box-shadow-desktop: none;
+        --mdc-icon-size: 25px;
+
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+
+      /* =========================================================
+         DESKTOP NAVBAR
+         ========================================================= */
+
+      .navbar.desktop.left {
+        width: 84px !important;
+        height: auto !important;
+
+        left: 80px !important;
+        top: 50% !important;
+        bottom: auto !important;
+
+        transform: translateY(-50%) !important;
+
+        padding: 10px 0 !important;
+
+        position: relative !important;
+
+        background: transparent !important;
+        border: none !important;
+        border-radius: 24px !important;
+
+        box-shadow: none !important;
+
+        overflow: visible !important;
+      }
+
+      /* Desktop glaslaag */
+
+      .navbar.desktop.left::before {
+        content: "";
+        position: absolute;
+
+        inset: 0;
+
+        border-radius: 24px;
+
+        padding: 1px;
+
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255,255,255,0.00) 0%,
+            rgba(255,255,255,0.10) 22%,
+            rgba(255,255,255,0.28) 50%,
+            rgba(255,255,255,0.10) 78%,
+            rgba(255,255,255,0.00) 100%
+          );
+
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+
+        pointer-events: none;
+
+        z-index: 3;
+      }
+
+      .navbar.desktop.left::after {
+        content: "";
+
+        position: absolute;
+
+        inset: 0;
+
+        border-radius: 24px;
+
+        background:
+          linear-gradient(
+            180deg,
+            rgba(255,255,255,0.14) 0%,
+            rgba(255,255,255,0.06) 45%,
+            rgba(255,255,255,0.025) 100%
+          );
+
+        backdrop-filter:
+          blur(10px)
+          saturate(120%);
+
+        -webkit-backdrop-filter:
+          blur(10px)
+          saturate(120%);
+
+        box-shadow:
+          inset 0 1px 1px rgba(255,255,255,0.18),
+          inset 0 -1px 1px rgba(0,0,0,0.04),
+          inset -6px 8px 16px rgba(0,0,0,0.045),
+          0 8px 24px rgba(0,0,0,0.10);
+
+        pointer-events: none;
+
+        z-index: -1;
+      }
+
+      /* =========================================================
+         MOBILE NAVBAR
+         ========================================================= */
+
+      .navbar.mobile {
+        position: relative !important;
+
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+
+        border-radius: 26px !important;
+
+        overflow: visible !important;
+      }
+
+      .navbar.mobile::before {
+        content: "";
+
+        position: absolute;
+
+        inset: 0;
+
+        border-radius: 26px;
+
+        padding: 1px;
+
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255,255,255,0.00) 0%,
+            rgba(255,255,255,0.10) 22%,
+            rgba(255,255,255,0.28) 50%,
+            rgba(255,255,255,0.10) 78%,
+            rgba(255,255,255,0.00) 100%
+          );
+
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+
+        pointer-events: none;
+
+        z-index: 3;
+      }
+
+      .navbar.mobile::after {
+        content: "";
+
+        position: absolute;
+
+        inset: 0;
+
+        border-radius: 26px;
+
+        background:
+          linear-gradient(
+            180deg,
+            rgba(255,255,255,0.14) 0%,
+            rgba(255,255,255,0.06) 45%,
+            rgba(255,255,255,0.025) 100%
+          );
+
+        backdrop-filter:
+          blur(10px)
+          saturate(120%);
+
+        -webkit-backdrop-filter:
+          blur(10px)
+          saturate(120%);
+
+        box-shadow:
+          inset 0 1px 1px rgba(255,255,255,0.18),
+          inset 0 -1px 1px rgba(0,0,0,0.04),
+          inset -6px 8px 16px rgba(0,0,0,0.045),
+          0 8px 24px rgba(0,0,0,0.10);
+
+        pointer-events: none;
+
+        z-index: -1;
+      }
+
+      /* =========================================================
+         ROUTES
+         ========================================================= */
+
+      .route {
+        width: 100% !important;
+
+        display: flex !important;
+
+        justify-content: center !important;
+        align-items: center !important;
+
+        padding: 6px 10px !important;
+
+        position: relative !important;
+
+        z-index: 5 !important;
+      }
+
+      /* =========================================================
+         ALLE KNOPPEN
+         ========================================================= */
+
+      .button {
+        width: 60px !important;
+        height: 60px !important;
+
+        border-radius: 21px !important;
+
+        background: transparent !important;
+
+        border: 1px solid transparent !important;
+
+        display: flex !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        position: relative !important;
+
+        transition:
+          background 0.22s ease,
+          border 0.22s ease,
+          box-shadow 0.22s ease,
+          transform 0.22s ease,
+          backdrop-filter 0.22s ease !important;
+      }
+
+      /* =========================================================
+         HOVER
+         ========================================================= */
+
+      .button:hover {
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255,255,255,0.17),
+            rgba(255,255,255,0.055)
+          ) !important;
+
+        border:
+          1px solid rgba(255,255,255,0.20) !important;
+
+        backdrop-filter:
+          blur(9px)
+          saturate(125%) !important;
+
+        -webkit-backdrop-filter:
+          blur(9px)
+          saturate(125%) !important;
+
+        box-shadow:
+          inset 0 1px 1px rgba(255,255,255,0.22),
+          inset -3px -3px 8px rgba(0,0,0,0.025),
+          0 5px 18px rgba(255,255,255,0.10),
+          0 4px 12px rgba(0,0,0,0.10) !important;
+
+        transform:
+          scale(1.045) !important;
+      }
+
+      /* =========================================================
+         ACTIEVE KNOP
+         ========================================================= */
+
+      .button.active,
+      .route.active .button,
+      .popup-item.active .button,
+      .submenu .button.active,
+      .sub-active .button,
+      .sub-active {
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255,255,255,0.19),
+            rgba(255,255,255,0.065)
+          ) !important;
+
+        border:
+          1px solid rgba(255,255,255,0.26) !important;
+
+        backdrop-filter:
+          blur(10px)
+          saturate(125%) !important;
+
+        -webkit-backdrop-filter:
+          blur(10px)
+          saturate(125%) !important;
+
+        box-shadow:
+          inset 0 1px 1px rgba(255,255,255,0.23),
+          inset -3px -3px 8px rgba(0,0,0,0.025),
+          0 5px 18px rgba(255,255,255,0.12),
+          0 4px 12px rgba(0,0,0,0.11) !important;
+
+        transform:
+          scale(1.045) !important;
+      }
+
+      /* =========================================================
+         ICONEN
+         ========================================================= */
+
+      .icon,
+      ha-icon,
+      ha-state-icon,
+      ha-icon path {
+        color: #333333 !important;
+        fill: #333333 !important;
+
+        transition:
+          color 0.2s ease,
+          fill 0.2s ease,
+          filter 0.2s ease !important;
+      }
+
+      /* Actieve iconen */
+
+      .button.active .icon,
+      .button.active ha-icon,
+      .button.active ha-icon path,
+
+      .route.active .icon,
+      .route.active ha-icon,
+      .route.active ha-icon path,
+
+      .sub-active .icon,
+      .sub-active ha-icon,
+      .sub-active ha-icon path,
+
+      .popup-item.active .icon,
+      .popup-item.active ha-icon,
+      .popup-item.active ha-icon path,
+
+      .submenu .button.active .icon,
+      .submenu .button.active ha-icon,
+      .submenu .button.active ha-icon path {
+        color: #808080 !important;
+        fill: #808080 !important;
+      }
+
+      /* =========================================================
+         POPUP / SUBMENU BASIS
+         ========================================================= */
+
+      .submenu,
+      .popup {
+        background: transparent !important;
+
+        border: none !important;
+
+        box-shadow: none !important;
+
+        border-radius: 22px !important;
+
+        padding: 7px !important;
+
+        position: relative !important;
+
+        overflow: visible !important;
+      }
+
+      /* Popup rand */
+
+      .submenu::before,
+      .popup::before {
+        content: "";
+
+        position: absolute;
+
+        inset: 0;
+
+        border-radius: 22px;
+
+        padding: 1px;
+
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255,255,255,0.00) 0%,
+            rgba(255,255,255,0.12) 25%,
+            rgba(255,255,255,0.30) 50%,
+            rgba(255,255,255,0.10) 75%,
+            rgba(255,255,255,0.00) 100%
+          );
+
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+
+        pointer-events: none;
+
+        z-index: 3;
+      }
+
+      /* Popup glas */
+
+      .submenu::after,
+      .popup::after {
+        content: "";
+
+        position: absolute;
+
+        inset: 0;
+
+        border-radius: 22px;
+
+        background:
+          linear-gradient(
+            180deg,
+            rgba(255,255,255,0.16) 0%,
+            rgba(255,255,255,0.065) 45%,
+            rgba(255,255,255,0.025) 100%
+          );
+
+        backdrop-filter:
+          blur(10px)
+          saturate(120%);
+
+        -webkit-backdrop-filter:
+          blur(10px)
+          saturate(120%);
+
+        box-shadow:
+          inset 0 1px 1px rgba(255,255,255,0.20),
+          inset -6px 8px 16px rgba(0,0,0,0.045),
+          0 8px 24px rgba(0,0,0,0.12);
+
+        pointer-events: none;
+
+        z-index: -1;
+      }
+
+      /* =========================================================
+         POPUP ITEMS
+         ========================================================= */
+
+      .popup-item,
+      .submenu .route {
+        position: relative !important;
+
+        z-index: 5 !important;
+      }
+
+      .popup-item .button,
+      .submenu .button {
+        border-radius: 18px !important;
+
+        background: transparent !important;
+
+        border: 1px solid transparent !important;
+
+        transition:
+          background 0.22s ease,
+          border 0.22s ease,
+          box-shadow 0.22s ease,
+          transform 0.22s ease !important;
+      }
+
+      /* Normale popup knop */
+
+      .popup-item:not(.active) .button,
+      .submenu .button:not(.active) {
+        background:
+          rgba(255,255,255,0.025) !important;
+
+        color:
+          rgba(150,150,150,0.95) !important;
+      }
+
+      /* Popup hover */
+
+      .popup-item:not(.active) .button:hover,
+      .submenu .button:not(.active):hover {
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255,255,255,0.18),
+            rgba(255,255,255,0.065)
+          ) !important;
+
+        border:
+          1px solid rgba(255,255,255,0.20) !important;
+
+        backdrop-filter:
+          blur(8px)
+          saturate(120%) !important;
+
+        -webkit-backdrop-filter:
+          blur(8px)
+          saturate(120%) !important;
+
+        box-shadow:
+          inset 0 1px 1px rgba(255,255,255,0.20),
+          0 5px 18px rgba(255,255,255,0.10),
+          0 3px 10px rgba(0,0,0,0.09) !important;
+
+        transform:
+          scale(1.035) !important;
+      }
+
+      /* =========================================================
+         POPUP TEKST
+         ========================================================= */
+
+      .popup-item:not(.active) .label,
+      .submenu .button:not(.active) .label,
+      .submenu .route .label {
+        color:
+          rgba(150,150,150,0.92) !important;
+      }
+
+      .popup-item.active .label,
+      .popup-item.active .name,
+
+      .submenu .button.active .label,
+      .submenu .button.active .name {
+        color:
+          #ffffff !important;
+      }
+
+      /* =========================================================
+         MOBILE LABELS
+         ========================================================= */
+
+      .navbar.mobile .label {
+        color:
+          rgba(80,80,80,0.95) !important;
+      }
+
+      .navbar.mobile .route.active .label,
+      .navbar.mobile .sub-active .label {
+        color:
+          #808080 !important;
+      }
+    type: custom:navbar-card
+header:
+  badges_position: top
+  badges_wrap: wrap
+  layout: start
+icon: mdi:linux
+max_columns: 4
+path: Trashdashh
+sections:
+  - cards:
+      - card_mod:
+          style: |-
+            :host {
+              display: block;
+              position: relative;
+              width: 100%;
+              border-radius: 26px;
+            }
+            :host::before {
+              content: "";
+              position: absolute;
+              inset: 0;
+              border-radius: 26px;
+              padding: .1rem;
+              background: linear-gradient(60deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.2) 49%, rgba(255,255,255,.2) 51%, rgba(255,255,255,0) 100%);
+              -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+              -webkit-mask-composite: xor;
+              mask-composite: exclude;
+              filter: saturate(130%);
+              pointer-events: none;
+            }
+            :host::after {
+              content: "";
+              position: absolute;
+              inset: 0;
+              border-radius: 26px;
+              z-index: -1;
+              background: linear-gradient(180deg, rgba(255,255,255,.08) 15%, rgba(255,255,255,0) 100%);
+              box-shadow: 0 8px 28px rgba(0,0,0,.32);
+              -webkit-backdrop-filter: blur(18px) saturate(115%) brightness(88%);
+              backdrop-filter: blur(18px) saturate(115%) brightness(88%);
+            }
+        custom_fields:
+          stack:
+            card:
+              custom_fields:
+                row1:
+                  card:
+                    custom_fields:
+                      lamp1:
+                        card:
+                          entity: light.robb_smarrt_rob_200_011_0
+                          show_state: false
+                          state:
+                            - styles:
+                                card:
+                                  - background: |
+                                      linear-gradient(
+                                        45deg,
+                                        rgba(255,255,255,0.8) 20%,
+                                        rgba(255,255,255,1) 100%
+                                      )
+                                icon:
+                                  - color: rgba(255,149,0,1)
+                                name:
+                                  - color: rgba(0,0,0,1)
+                              value: 'on'
+                          styles:
+                            card:
+                              - padding: 12px
+                              - margin: 0
+                              - border: none
+                              - box-shadow: none
+                              - background: |
+                                  linear-gradient(
+                                    45deg,
+                                    rgba(0,0,0,0.1) 20%,
+                                    rgba(0,0,0,0.2) 100%
+                                  )
+                              - filter: saturate(200%)
+                              - height: 75px
+                              - border-radius: 20px
+                              - box-sizing: border-box
+                            grid:
+                              - grid-template-areas: '"i" "n"'
+                              - grid-template-columns: 1fr
+                              - grid-template-rows: max-content max-content
+                              - justify-items: center
+                              - align-items: center
+                            icon:
+                              - width: 28px
+                              - height: 28px
+                            img_cell:
+                              - justify-self: center
+                              - align-self: center
+                              - background: none
+                              - border-radius: 0
+                              - width: 32px
+                              - height: 32px
+                            name:
+                              - justify-self: center
+                              - text-align: center
+                              - font-weight: 550
+                              - font-size: 13px
+                              - color: white
+                              - padding: 0
+                          tap_action:
+                            action: toggle
+                          type: custom:button-card
+                      lamp2:
+                        card:
+                          entity: light.robb_smarrt_rob_200_011_0_2
+                          show_state: false
+                          state:
+                            - styles:
+                                card:
+                                  - background: |
+                                      linear-gradient(
+                                        45deg,
+                                        rgba(255,255,255,0.8) 20%,
+                                        rgba(255,255,255,1) 100%
+                                      )
+                                icon:
+                                  - color: rgba(255,149,0,1)
+                                name:
+                                  - color: rgba(0,0,0,1)
+                              value: 'on'
+                          styles:
+                            card:
+                              - padding: 12px
+                              - margin: 0
+                              - border: none
+                              - box-shadow: none
+                              - background: |
+                                  linear-gradient(
+                                    45deg,
+                                    rgba(0,0,0,0.1) 20%,
+                                    rgba(0,0,0,0.2) 100%
+                                  )
+                              - filter: saturate(200%)
+                              - height: 75px
+                              - border-radius: 20px
+                              - box-sizing: border-box
+                            grid:
+                              - grid-template-areas: '"i" "n"'
+                              - grid-template-columns: 1fr
+                              - grid-template-rows: max-content max-content
+                              - justify-items: center
+                              - align-items: center
+                            icon:
+                              - width: 28px
+                              - height: 28px
+                            img_cell:
+                              - justify-self: center
+                              - align-self: center
+                              - background: none
+                              - border-radius: 0
+                              - width: 32px
+                              - height: 32px
+                            name:
+                              - justify-self: center
+                              - text-align: center
+                              - font-weight: 550
+                              - font-size: 13px
+                              - color: white
+                              - padding: 0
+                          tap_action:
+                            action: toggle
+                          type: custom:button-card
+                    styles:
+                      card:
+                        - background-color: transparent
+                        - border: none
+                        - box-shadow: none
+                        - padding: 0
+                        - margin: 0 0 10px 0
+                        - border-radius: 0
+                      grid:
+                        - grid-template-areas: '"lamp1 lamp2"'
+                        - grid-template-columns: 1fr 1fr
+                        - grid-template-rows: 1fr
+                        - column-gap: 10px
+                    type: custom:button-card
+                row2:
+                  card:
+                    custom_fields:
+                      tv:
+                        card:
+                          entity: media_player.lg_webos_tv_oled65cx6la
+                          name: LG TV
+                          show_state: false
+                          state:
+                            - styles:
+                                card:
+                                  - background: |
+                                      linear-gradient(
+                                        45deg,
+                                        rgba(255,255,255,0.8) 20%,
+                                        rgba(255,255,255,1) 100%
+                                      )
+                                icon:
+                                  - color: rgba(0,122,255,1)
+                                name:
+                                  - color: rgba(0,0,0,1)
+                              value: 'on'
+                          styles:
+                            card:
+                              - padding: 12px
+                              - margin: 0
+                              - border: none
+                              - box-shadow: none
+                              - background: |
+                                  linear-gradient(
+                                    45deg,
+                                    rgba(0,0,0,0.1) 20%,
+                                    rgba(0,0,0,0.2) 100%
+                                  )
+                              - filter: saturate(200%)
+                              - height: 75px
+                              - border-radius: 20px
+                              - box-sizing: border-box
+                            grid:
+                              - grid-template-areas: '"i" "n"'
+                              - grid-template-columns: 1fr
+                              - grid-template-rows: max-content max-content
+                              - justify-items: center
+                              - align-items: center
+                            icon:
+                              - width: 28px
+                              - height: 28px
+                            img_cell:
+                              - justify-self: center
+                              - align-self: center
+                              - background: none
+                              - width: 32px
+                              - height: 32px
+                            name:
+                              - justify-self: center
+                              - text-align: center
+                              - font-weight: 550
+                              - font-size: 13px
+                              - color: white
+                              - padding: 0
+                          tap_action:
+                            action: toggle
+                          type: custom:button-card
+                      zolder:
+                        card:
+                          entity: light.rubens_slaapkamer_lamp_zolder
+                          name: Zolder Lamp
+                          show_state: false
+                          state:
+                            - styles:
+                                card:
+                                  - background: |
+                                      linear-gradient(
+                                        45deg,
+                                        rgba(255,255,255,0.8) 20%,
+                                        rgba(255,255,255,1) 100%
+                                      )
+                                icon:
+                                  - color: rgba(255,149,0,1)
+                                name:
+                                  - color: rgba(0,0,0,1)
+                              value: 'on'
+                          styles:
+                            card:
+                              - padding: 12px
+                              - margin: 0
+                              - border: none
+                              - box-shadow: none
+                              - background: |
+                                  linear-gradient(
+                                    45deg,
+                                    rgba(0,0,0,0.1) 20%,
+                                    rgba(0,0,0,0.2) 100%
+                                  )
+                              - filter: saturate(200%)
+                              - height: 75px
+                              - border-radius: 20px
+                              - box-sizing: border-box
+                            grid:
+                              - grid-template-areas: '"i" "n"'
+                              - grid-template-columns: 1fr
+                              - grid-template-rows: max-content max-content
+                              - justify-items: center
+                              - align-items: center
+                            icon:
+                              - width: 28px
+                              - height: 28px
+                            img_cell:
+                              - justify-self: center
+                              - align-self: center
+                              - background: none
+                              - width: 32px
+                              - height: 32px
+                            name:
+                              - justify-self: center
+                              - text-align: center
+                              - font-weight: 550
+                              - font-size: 13px
+                              - color: white
+                              - padding: 0
+                          tap_action:
+                            action: toggle
+                          type: custom:button-card
+                    styles:
+                      card:
+                        - background-color: transparent
+                        - border: none
+                        - box-shadow: none
+                        - padding: 0
+                        - margin: 0 0 10px 0
+                        - border-radius: 0
+                      grid:
+                        - grid-template-areas: '"zolder tv"'
+                        - grid-template-columns: 1fr 1fr
+                        - grid-template-rows: 1fr
+                        - column-gap: 10px
+                    type: custom:button-card
+                row3:
+                  card:
+                    custom_fields:
+                      alles_uit:
+                        card:
+                          entity: input_boolean.bevestig_alles_uit
+                          icon: mdi:power
+                          name: Alles uit
+                          show_state: false
+                          state:
+                            - styles:
+                                card:
+                                  - background: |
+                                      linear-gradient(
+                                        135deg,
+                                        rgba(255,0,0,0.8),
+                                        rgba(101,0,0,1)
+                                      )
+                                icon:
+                                  - color: white
+                                name:
+                                  - color: white
+                              value: 'on'
+                          styles:
+                            card:
+                              - padding: 12px
+                              - margin: 0
+                              - border: none
+                              - box-shadow: none
+                              - background: |
+                                  linear-gradient(
+                                    45deg,
+                                    rgba(0,0,0,0.1) 20%,
+                                    rgba(0,0,0,0.2) 100%
+                                  )
+                              - filter: saturate(200%)
+                              - height: 75px
+                              - border-radius: 20px
+                              - box-sizing: border-box
+                            grid:
+                              - grid-template-areas: '"i" "n"'
+                              - grid-template-columns: 1fr
+                              - grid-template-rows: max-content max-content
+                              - justify-items: center
+                              - align-items: center
+                            icon:
+                              - width: 28px
+                              - height: 28px
+                            img_cell:
+                              - width: 32px
+                              - height: 32px
+                            name:
+                              - justify-self: center
+                              - text-align: center
+                              - font-weight: 550
+                              - font-size: 13px
+                              - color: white
+                          tap_action:
+                            action: call-service
+                            service: script.alles_uit_bevestiging
+                          type: custom:button-card
+                      bool:
+                        card:
+                          entity: climate.woonkamer_mhi_air_conditioner
+                          icon: mdi:air-conditioner
+                          name: Airco
+                          show_state: false
+                          state:
+                            - styles:
+                                card:
+                                  - background: |
+                                      linear-gradient(
+                                        45deg,
+                                        rgba(255,255,255,0.8) 20%,
+                                        rgba(255,255,255,1) 100%
+                                      )
+                                icon:
+                                  - color: rgba(52,199,89,1)
+                                name:
+                                  - color: rgba(0,0,0,1)
+                              value: 'on'
+                          styles:
+                            card:
+                              - padding: 12px
+                              - margin: 0
+                              - border: none
+                              - box-shadow: none
+                              - background: |
+                                  linear-gradient(
+                                    45deg,
+                                    rgba(0,0,0,0.1) 20%,
+                                    rgba(0,0,0,0.2) 100%
+                                  )
+                              - filter: saturate(200%)
+                              - height: 75px
+                              - border-radius: 20px
+                              - box-sizing: border-box
+                            grid:
+                              - grid-template-areas: '"i" "n"'
+                              - grid-template-columns: 1fr
+                              - grid-template-rows: max-content max-content
+                              - justify-items: center
+                              - align-items: center
+                            icon:
+                              - width: 28px
+                              - height: 28px
+                            img_cell:
+                              - width: 32px
+                              - height: 32px
+                            name:
+                              - justify-self: center
+                              - text-align: center
+                              - font-weight: 550
+                              - font-size: 13px
+                              - color: white
+                          tap_action:
+                            action: toggle
+                          type: custom:button-card
+                    styles:
+                      card:
+                        - background-color: transparent
+                        - border: none
+                        - box-shadow: none
+                        - padding: 0
+                        - margin: 0
+                        - border-radius: 0
+                      grid:
+                        - grid-template-areas: '"bool alles_uit"'
+                        - grid-template-columns: 1fr 1fr
+                        - grid-template-rows: 1fr
+                        - column-gap: 10px
+                    type: custom:button-card
+              show_icon: false
+              show_name: false
+              show_state: false
+              styles:
+                card:
+                  - background-color: transparent
+                  - border: none
+                  - box-shadow: none
+                  - padding: 0 15px 15px 15px
+                  - margin: 0
+                  - border-radius: 0
+                  - height: auto
+                  - overflow-y: auto
+                grid:
+                  - grid-template-areas: '"row1" "row2" "row3"'
+                  - align-content: start
+                  - align-self: start
+                  - justify-content: start
+                  - justify-self: start
+              type: custom:button-card
+        entity: weather.weer_thuis
+        show_icon: false
+        show_name: true
+        show_state: false
+        styles:
+          card:
+            - width: 100%
+            - height: 100%
+            - min-height: 100%
+            - background: transparent
+            - padding: 15px
+            - margin: 0
+            - border-radius: 30px
+            - box-shadow: none
+            - border: none
+            - overflow: hidden
+          grid:
+            - grid-template-areas: '"n" "stack"'
+            - grid-template-columns: 1fr
+            - grid-template-rows: auto
+            - align-content: start
+            - align-self: start
+            - justify-content: start
+            - justify-self: start
+            - row-gap: 15px
+            - width: 100%
+          name:
+            - font-size: 20px
+            - font-weight: 100
+            - padding: 5px 5px 5px 15px
+            - margin: -3px 0 0 0
+            - align-self: start
+            - justify-self: start
+            - color: white
+        type: custom:button-card
+      - card_mod:
+          style: |-
+            :host {
+              display: block;
+              position: relative;
+              width: 100%;
+              border-radius: 26px;
+            }
+            :host::before {
+              content: "";
+              position: absolute;
+              inset: 0;
+              border-radius: 26px;
+              padding: .1rem;
+              background: linear-gradient(60deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.2) 49%, rgba(255,255,255,.2) 51%, rgba(255,255,255,0) 100%);
+              -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+              -webkit-mask-composite: xor;
+              mask-composite: exclude;
+              filter: saturate(130%);
+              pointer-events: none;
+            }
+            :host::after {
+              content: "";
+              position: absolute;
+              inset: 0;
+              border-radius: 26px;
+              z-index: -1;
+              background: linear-gradient(180deg, rgba(255,255,255,.08) 15%, rgba(255,255,255,0) 100%);
+              box-shadow: 0 8px 28px rgba(0,0,0,.32);
+              -webkit-backdrop-filter: blur(18px) saturate(115%) brightness(88%);
+              backdrop-filter: blur(18px) saturate(115%) brightness(88%);
+            }
+            ha-card {
+              background: transparent !important;
+              border: none !important;
+              box-shadow: none !important;
+              border-radius: 26px !important;
+              height: 100% !important;
+              min-height: 100% !important;
+              padding: 10px !important;
+              overflow: hidden !important;
+            }
+        player:
+          artworkAsBackground: true
+          artworkAsBackgroundBlur: 27
+          artworkBorderRadius: 12
+          controlsAndHeaderBackgroundOpacity: 0.1
+          hideArtistAlbum: false
+          hideArtwork: false
+          hideHeader: false
+          labelWhenNoMediaIsSelected: No media selected
+          showAudioInputFormat: false
+          showSource: false
+        sections: []
+        type: custom:sonos-card
+      - card_mod:
+          style: |-
+            :host {
+              display: block;
+              position: relative;
+              width: 100%;
+              border-radius: 26px;
+            }
+            :host::before {
+              content: "";
+              position: absolute;
+              inset: 0;
+              border-radius: 26px;
+              padding: .1rem;
+              background: linear-gradient(60deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.2) 49%, rgba(255,255,255,.2) 51%, rgba(255,255,255,0) 100%);
+              -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+              -webkit-mask-composite: xor;
+              mask-composite: exclude;
+              filter: saturate(130%);
+              pointer-events: none;
+            }
+            :host::after {
+              content: "";
+              position: absolute;
+              inset: 0;
+              border-radius: 26px;
+              z-index: -1;
+              background: linear-gradient(180deg, rgba(255,255,255,.08) 15%, rgba(255,255,255,0) 100%);
+              box-shadow: 0 8px 28px rgba(0,0,0,.32);
+              -webkit-backdrop-filter: blur(18px) saturate(115%) brightness(88%);
+              backdrop-filter: blur(18px) saturate(115%) brightness(88%);
+            }
+        custom_fields:
+          gauge:
+            card:
+              card_mod:
+                style: |
+                  ha-card {
+                    background: transparent !important;
+                    border: none !important;
+                    box-shadow: none !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                  }
+
+                  .card-header,
+                  .name,
+                  h1.card-header,
+                  ha-icon-button,
+                  hui-card-options,
+                  .more-info {
+                    display: none !important;
+                  }
+              entity: climate.woonkamer_mhi_air_conditioner
+              features: []
+              name: ''
+              type: thermostat
+          horizontal:
+            card:
+              cards:
+                - entity: climate.woonkamer_mhi_air_conditioner
+                  icon: |
+                    [[[
+                      if (entity && entity.state !== 'off')
+                        return 'mdi:power';
+
+                      return 'mdi:power-off';
+                    ]]]
+                  show_icon: true
+                  show_name: false
+                  styles:
+                    card:
+                      - background: |
+                          [[[
+                            if (entity && entity.state !== 'off')
+                              return 'rgba(255,255,255,0.3)';
+
+                            return 'rgba(255,255,255,0.15)';
+                          ]]]
+                      - height: 38px
+                      - border-radius: 10px
+                      - border: none
+                      - box-shadow: none
+                    icon:
+                      - color: |
+                          [[[
+                            if (entity && entity.state !== 'off')
+                              return '#ff9800';
+
+                            return 'white';
+                          ]]]
+                      - width: 20px
+                  tap_action:
+                    action: perform-action
+                    perform_action: climate.toggle
+                    target:
+                      entity_id: climate.woonkamer_mhi_air_conditioner
+                  type: custom:button-card
+                - entity: climate.woonkamer_mhi_air_conditioner
+                  icon: mdi:fan-speed-1
+                  show_icon: true
+                  show_name: false
+                  styles:
+                    card:
+                      - background: |
+                          [[[
+                            if (
+                              entity &&
+                              entity.attributes &&
+                              entity.attributes.fan_mode &&
+                              entity.attributes.fan_mode.toLowerCase() === 'low'
+                            )
+                              return 'rgba(255,255,255,0.3)';
+
+                            return 'rgba(255,255,255,0.15)';
+                          ]]]
+                      - height: 38px
+                      - border-radius: 10px
+                      - border: none
+                      - box-shadow: none
+                    icon:
+                      - color: |
+                          [[[
+                            if (
+                              entity &&
+                              entity.attributes &&
+                              entity.attributes.fan_mode &&
+                              entity.attributes.fan_mode.toLowerCase() === 'low'
+                            )
+                              return '#ff9800';
+
+                            return 'white';
+                          ]]]
+                      - width: 20px
+                  tap_action:
+                    action: perform-action
+                    data:
+                      fan_mode: low
+                    perform_action: climate.set_fan_mode
+                    target:
+                      entity_id: climate.woonkamer_mhi_air_conditioner
+                  type: custom:button-card
+                - entity: climate.woonkamer_mhi_air_conditioner
+                  icon: mdi:fan-speed-2
+                  show_icon: true
+                  show_name: false
+                  styles:
+                    card:
+                      - background: |
+                          [[[
+                            if (
+                              entity &&
+                              entity.attributes &&
+                              entity.attributes.fan_mode &&
+                              entity.attributes.fan_mode.toLowerCase() === 'medium'
+                            )
+                              return 'rgba(255,255,255,0.3)';
+
+                            return 'rgba(255,255,255,0.15)';
+                          ]]]
+                      - height: 38px
+                      - border-radius: 10px
+                      - border: none
+                      - box-shadow: none
+                    icon:
+                      - color: |
+                          [[[
+                            if (
+                              entity &&
+                              entity.attributes &&
+                              entity.attributes.fan_mode &&
+                              entity.attributes.fan_mode.toLowerCase() === 'medium'
+                            )
+                              return '#ff9800';
+
+                            return 'white';
+                          ]]]
+                      - width: 20px
+                  tap_action:
+                    action: perform-action
+                    data:
+                      fan_mode: medium
+                    perform_action: climate.set_fan_mode
+                    target:
+                      entity_id: climate.woonkamer_mhi_air_conditioner
+                  type: custom:button-card
+                - entity: climate.woonkamer_mhi_air_conditioner
+                  icon: mdi:fan-speed-3
+                  show_icon: true
+                  show_name: false
+                  styles:
+                    card:
+                      - background: |
+                          [[[
+                            if (
+                              entity &&
+                              entity.attributes &&
+                              entity.attributes.fan_mode &&
+                              entity.attributes.fan_mode.toLowerCase() === 'high'
+                            )
+                              return 'rgba(255,255,255,0.3)';
+
+                            return 'rgba(255,255,255,0.15)';
+                          ]]]
+                      - height: 38px
+                      - border-radius: 10px
+                      - border: none
+                      - box-shadow: none
+                    icon:
+                      - color: |
+                          [[[
+                            if (
+                              entity &&
+                              entity.attributes &&
+                              entity.attributes.fan_mode &&
+                              entity.attributes.fan_mode.toLowerCase() === 'high'
+                            )
+                              return '#ff9800';
+
+                            return 'white';
+                          ]]]
+                      - width: 20px
+                  tap_action:
+                    action: perform-action
+                    data:
+                      fan_mode: high
+                    perform_action: climate.set_fan_mode
+                    target:
+                      entity_id: climate.woonkamer_mhi_air_conditioner
+                  type: custom:button-card
+              type: horizontal-stack
+        entity: climate.woonkamer_mhi_air_conditioner
+        show_icon: false
+        show_name: false
+        show_state: false
+        styles:
+          card:
+            - width: 100%
+            - height: 100%
+            - min-height: 100%
+            - background: transparent
+            - padding: 10px
+            - margin: 0
+            - border-radius: 30px
+            - box-shadow: none
+            - border: none
+            - overflow: hidden
+          custom_fields:
+            gauge:
+              - justify-self: center
+              - align-self: center
+              - width: 100%
+              - margin-top: -25px
+              - margin-bottom: -20px
+            horizontal:
+              - justify-self: center
+              - align-self: center
+              - width: 100%
+          grid:
+            - grid-template-areas: '"gauge" "horizontal"'
+            - grid-template-rows: 1fr 40px
+            - grid-template-columns: 100%
+            - width: 100%
+        type: custom:button-card
+      - card_mod:
+          style: |-
+            :host {
+              display: block;
+              position: relative;
+              width: 100%;
+              border-radius: 26px;
+            }
+            :host::before {
+              content: "";
+              position: absolute;
+              inset: 0;
+              border-radius: 26px;
+              padding: .1rem;
+              background: linear-gradient(60deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.2) 49%, rgba(255,255,255,.2) 51%, rgba(255,255,255,0) 100%);
+              -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+              -webkit-mask-composite: xor;
+              mask-composite: exclude;
+              filter: saturate(130%);
+              pointer-events: none;
+            }
+            :host::after {
+              content: "";
+              position: absolute;
+              inset: 0;
+              border-radius: 26px;
+              z-index: -1;
+              background: linear-gradient(180deg, rgba(255,255,255,.08) 15%, rgba(255,255,255,0) 100%);
+              box-shadow: 0 8px 28px rgba(0,0,0,.32);
+              -webkit-backdrop-filter: blur(18px) saturate(115%) brightness(88%);
+              backdrop-filter: blur(18px) saturate(115%) brightness(88%);
+            }
+        custom_fields:
+          stack:
+            card:
+              custom_fields:
+                circles:
+                  card:
+                    custom_fields:
+                      battery:
+                        card:
+                          entity: sensor.parkeerplaats_lynk_co_01_batterijniveau
+                          icon: mdi:battery-charging
+                          name: |
+                            [[[
+                              let val =
+                                states['sensor.parkeerplaats_lynk_co_01_batterijniveau']
+                                  ? states['sensor.parkeerplaats_lynk_co_01_batterijniveau'].state
+                                  : '0';
+
+                              return Math.floor(val) + "%";
+                            ]]]
+                          styles:
+                            card:
+                              - background-color: transparent
+                              - border: none
+                              - box-shadow: none
+                              - padding: 0
+                              - margin: 0
+                              - width: 45px
+                            grid:
+                              - grid-template-areas: '"i" "n"'
+                              - grid-template-columns: 1fr
+                              - grid-template-rows: 1fr 1fr
+                            icon:
+                              - width: 22px
+                              - color: rgba(255,255,255,.8)
+                            img_cell:
+                              - background: |
+                                  linear-gradient(
+                                    45deg,
+                                    rgba(255,255,255,.1) 20%,
+                                    rgba(255,255,255,.2) 100%
+                                  )
+                              - border-radius: 50px
+                              - width: 42px
+                              - height: 42px
+                            name:
+                              - font-size: 12px
+                              - font-weight: 550
+                              - color: rgba(255,255,255,.7)
+                              - padding-top: 2px
+                          type: custom:button-card
+                      fuel:
+                        card:
+                          entity: sensor.parkeerplaats_lynk_co_01_brandstofniveau
+                          icon: mdi:gas-station
+                          name: |
+                            [[[
+                              let val =
+                                states['sensor.parkeerplaats_lynk_co_01_brandstofniveau']
+                                  ? states['sensor.parkeerplaats_lynk_co_01_brandstofniveau'].state
+                                  : '0';
+
+                              return Math.floor(val) + "%";
+                            ]]]
+                          styles:
+                            card:
+                              - background-color: transparent
+                              - border: none
+                              - box-shadow: none
+                              - padding: 0
+                              - margin: 0
+                              - width: 45px
+                            grid:
+                              - grid-template-areas: '"i" "n"'
+                              - grid-template-columns: 1fr
+                              - grid-template-rows: 1fr 1fr
+                            icon:
+                              - width: 22px
+                              - color: rgba(255,255,255,.8)
+                            img_cell:
+                              - background: |
+                                  linear-gradient(
+                                    45deg,
+                                    rgba(255,255,255,.1) 20%,
+                                    rgba(255,255,255,.2) 100%
+                                  )
+                              - border-radius: 50px
+                              - width: 42px
+                              - height: 42px
+                            name:
+                              - font-size: 12px
+                              - font-weight: 550
+                              - color: rgba(255,255,255,.7)
+                              - padding-top: 2px
+                          type: custom:button-card
+                      locked:
+                        card:
+                          entity: sensor.parkeerplaats_lynk_co_01_centraal_slot
+                          icon: |
+                            [[[
+                              let st =
+                                states['sensor.parkeerplaats_lynk_co_01_centraal_slot']
+                                  ? states['sensor.parkeerplaats_lynk_co_01_centraal_slot'].state.toLowerCase()
+                                  : '';
+
+                              return (
+                                st === "dicht" ||
+                                st === "locked" ||
+                                st === "geblokkeerd"
+                              )
+                                ? "mdi:lock"
+                                : "mdi:lock-open";
+                            ]]]
+                          show_name: false
+                          styles:
+                            card:
+                              - background-color: transparent
+                              - border: none
+                              - box-shadow: none
+                              - padding: 0
+                              - margin: 0
+                              - width: 45px
+                            grid:
+                              - grid-template-areas: '"i" "n"'
+                              - grid-template-columns: 1fr
+                              - grid-template-rows: 1fr 1fr
+                            icon:
+                              - width: 22px
+                              - color: |
+                                  [[[
+                                    let st =
+                                      states['sensor.parkeerplaats_lynk_co_01_centraal_slot']
+                                        ? states['sensor.parkeerplaats_lynk_co_01_centraal_slot'].state.toLowerCase()
+                                        : '';
+
+                                    return (
+                                      st === "dicht" ||
+                                      st === "locked" ||
+                                      st === "geblokkeerd"
+                                    )
+                                      ? "rgba(255,255,255,.8)"
+                                      : "white";
+                                  ]]]
+                            img_cell:
+                              - background: |
+                                  [[[
+                                    let st =
+                                      states['sensor.parkeerplaats_lynk_co_01_centraal_slot']
+                                        ? states['sensor.parkeerplaats_lynk_co_01_centraal_slot'].state.toLowerCase()
+                                        : '';
+
+                                    return (
+                                      st === "dicht" ||
+                                      st === "locked" ||
+                                      st === "geblokkeerd"
+                                    )
+                                      ? "linear-gradient(45deg, rgba(255,255,255,.1) 20%, rgba(255,255,255,.2) 100%)"
+                                      : "var(--label-badge-red)";
+                                  ]]]
+                              - border-radius: 50px
+                              - width: 42px
+                              - height: 42px
+                          type: custom:button-card
+                      status:
+                        card:
+                          entity: sensor.parkeerplaats_lynk_co_01_oplaadstatus
+                          icon: mdi:ev-station
+                          show_name: false
+                          show_state: false
+                          styles:
+                            card:
+                              - background-color: transparent
+                              - border: none
+                              - box-shadow: none
+                              - padding: 0
+                              - margin: 0
+                              - width: 45px
+                              - height: 80px
+                            grid:
+                              - grid-template-areas: '"i" "n"'
+                              - grid-template-columns: 1fr
+                              - grid-template-rows: 1fr 1fr
+                            icon:
+                              - width: 22px
+                              - color: |
+                                  [[[
+                                    let st =
+                                      states['sensor.parkeerplaats_lynk_co_01_oplaadstatus']?.state?.toLowerCase() || '';
+
+                                    let charging =
+                                      st.includes('charging') ||
+                                      st.includes('laden');
+
+                                    return charging
+                                      ? "white"
+                                      : "rgba(255,255,255,.5)";
+                                  ]]]
+                            img_cell:
+                              - background: |
+                                  [[[
+                                    let st =
+                                      states['sensor.parkeerplaats_lynk_co_01_oplaadstatus']?.state?.toLowerCase() || '';
+
+                                    let charging =
+                                      st.includes('charging') ||
+                                      st.includes('laden');
+
+                                    return charging
+                                      ? "rgba(76,175,80,.65)"
+                                      : "linear-gradient(45deg, rgba(255,255,255,.1) 20%, rgba(255,255,255,.2) 100%)";
+                                  ]]]
+                              - border-radius: 50%
+                              - width: 42px
+                              - height: 42px
+                          type: custom:button-card
+                    styles:
+                      card:
+                        - background-color: transparent
+                        - padding: 0
+                        - align-content: start
+                        - justify-content: center
+                        - border-radius: 0
+                        - border: none
+                        - box-shadow: none
+                        - height: 80px
+                        - width: 100%
+                        - margin: 0
+                      grid:
+                        - grid-template-areas: '"battery fuel locked status"'
+                        - grid-template-columns: 1fr 1fr 1fr 1fr
+                        - grid-template-rows: 1fr
+                        - column-gap: 4px
+                        - align-items: start
+                        - justify-items: center
+                    type: custom:button-card
+                image:
+                  card:
+                    entity_picture: /local/lynkco.png
+                    show_entity_picture: true
+                    show_name: false
+                    show_state: false
+                    styles:
+                      card:
+                        - background-color: transparent
+                        - border-radius: 0
+                        - border: none
+                        - box-shadow: none
+                        - padding: 0
+                        - margin: -25px 0 -15px 0
+                        - width: 100%
+                      entity_picture:
+                        - width: 100%
+                        - max-width: 220px
+                        - height: auto
+                        - object-fit: contain
+                      img_cell:
+                        - width: 100%
+                        - height: auto
+                    type: custom:button-card
+              show_icon: false
+              show_name: false
+              show_state: false
+              styles:
+                card:
+                  - background-color: transparent
+                  - padding: 10px
+                  - margin: 0
+                  - border-radius: 0
+                  - border: none
+                  - box-shadow: none
+                  - overflow: visible !important
+                  - width: 100%
+                grid:
+                  - grid-template-areas: '"image" "circles"'
+                  - grid-template-columns: 1fr
+                  - grid-template-rows: auto auto
+                  - align-content: start
+                  - align-self: start
+                  - justify-content: start
+                  - justify-self: start
+                  - width: 100%
+              type: custom:button-card
+        entity: device_tracker.parkeerplaats_lynk_co_01
+        show_icon: false
+        show_name: false
+        show_state: true
+        styles:
+          card:
+            - width: 100%
+            - height: 100%
+            - min-height: 100%
+            - padding: 10px
+            - margin: 0
+            - align-content: start
+            - justify-content: start
+            - align-self: start
+            - background: transparent
+            - border-radius: 30px
+            - border: none
+            - box-shadow: none
+            - overflow: visible !important
+          grid:
+            - grid-template-areas: '"state" "stack"'
+            - grid-template-columns: 1fr
+            - grid-template-rows: auto 1fr
+            - align-content: start
+            - align-self: start
+            - justify-content: start
+            - justify-self: start
+            - width: 100%
+          state:
+            - justify-self: start
+            - align-self: start
+            - text-align: left
+            - color: rgba(255,255,255,.5)
+            - font-size: 15px
+            - font-weight: 550
+            - padding: 5px 0 0 15px
+            - margin: 0 0 -5px 0
+        tap_action:
+          action: perform-action
+          perform_action: homeassistant.update_entity
+          target:
+            entity_id: sensor.parkeerplaats_lynk_co_01_centraal_slot
+        type: custom:button-card
+    column_span: 4
+    layout:
+      grid-auto-rows: auto
+      grid-gap: 12px
+      grid-template-columns: repeat(4, 1fr)
+      margin: 0
+      padding: 0
+    layout_type: custom:grid-layout
+    type: custom:layout-card
+  - cards: []
+    column_span: 4
+    type: grid
+subview: false
+title: TrashDash
+type: sections
+visible:
+  - user: d35e5d50fb7b4937a299814bc460670f
+  - user: 88568c85e11a4ca488604af5fa8d1529
+  - user: 3a5cf4dd7dc94c049b225b391533f3b3
+  - user: 3b1e8328ec0d42f1b76b17857f662428
