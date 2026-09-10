@@ -2,4 +2,123 @@ title: Empty
 views:
   - title: Home
     path: home
-    cards: []
+    cards:
+      - type: custom:layout-card
+        layout_type: grid
+        layout:
+          grid-template-columns: repeat(4, 1fr)
+          grid-auto-rows: auto
+          gap: 16px
+        cards:
+          # Lampen/Buttons Card
+          - type: custom:button-card
+            name: Lampen
+            show_name: false
+            styles:
+              card:
+                - background: rgba(255,255,255,0.08)
+                - backdrop-filter: blur(22px) saturate(150%)
+                - -webkit-backdrop-filter: blur(22px) saturate(150%)
+                - border-radius: 22px
+                - border: 1px solid rgba(255,255,255,0.16)
+                - box-shadow: 0 8px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.22)
+                - padding: 20px
+                - min-height: 320px
+            custom_fields:
+              grid_layout: |
+                [[[ return `
+                  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; width: 100%;">
+                    <button-card type="button" entity="light.aanbodig_kamer_1" name="Aanbo..." style="padding: 12px; border-radius: 12px; background: rgba(0,0,0,0.1); color: white; border: 1px solid rgba(255,255,255,0.1);"></button-card>
+                    <button-card type="button" entity="light.aanbodig_kamer_2" name="Aanbo..." style="padding: 12px; border-radius: 12px; background: rgba(0,0,0,0.1); color: white; border: 1px solid rgba(255,255,255,0.1);"></button-card>
+                    <button-card type="button" entity="light.slaapkamer" name="Zolder..." style="padding: 12px; border-radius: 12px; background: rgba(0,0,0,0.1); color: white; border: 1px solid rgba(255,255,255,0.1);"></button-card>
+                    <button-card type="button" entity="media_player.lg_tv" name="LG TV" style="padding: 12px; border-radius: 12px; background: rgba(0,0,0,0.1); color: white; border: 1px solid rgba(255,255,255,0.1);"></button-card>
+                    <button-card type="button" entity="climate.airco" name="Airco" style="padding: 12px; border-radius: 12px; background: rgba(0,0,0,0.1); color: white; border: 1px solid rgba(255,255,255,0.1);"></button-card>
+                    <button-card type="button" entity="script.alles_uit_bevestiging" name="Alles uit" style="padding: 12px; border-radius: 12px; background: rgba(0,0,0,0.1); color: white; border: 1px solid rgba(255,255,255,0.1);"></button-card>
+                  </div>
+                `; ]]]
+            custom_fields:
+              grid_layout: grid_layout
+
+          # Sonos Card
+          - type: custom:sonos-card
+            sections: []
+            player:
+              artworkAsBackgroundBlur: 27
+              artworkBorderRadius: 12
+              artworkAsBackground: true
+              controlsAndHeaderBackgroundOpacity: 0.1
+              hideArtistAlbum: false
+              hideArtwork: false
+              hideHeader: false
+              labelWhenNoMediaIsSelected: No media selected
+              showAudioInputFormat: false
+              showSource: false
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgba(255,255,255,0.08) !important;
+                  backdrop-filter: blur(28px) saturate(150%) !important;
+                  -webkit-backdrop-filter: blur(28px) saturate(150%) !important;
+                  border-radius: 22px !important;
+                  border: 1px solid rgba(255,255,255,0.16) !important;
+                  box-shadow: 0 8px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.22) !important;
+                  transition: box-shadow 0.2s ease-in-out;
+                  min-height: 320px !important;
+                  padding: 20px !important;
+                }
+
+          # Weather Card
+          - type: weather-forecast
+            entity: weather.weer_thuis_verwachtingen
+            show_current: true
+            show_forecast: false
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgba(255,255,255,0.08) !important;
+                  backdrop-filter: blur(22px) saturate(150%) !important;
+                  -webkit-backdrop-filter: blur(22px) saturate(150%) !important;
+                  border-radius: 22px !important;
+                  border: 1px solid rgba(255,255,255,0.16) !important;
+                  box-shadow: 0 8px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.22) !important;
+                  min-height: 320px !important;
+                  padding: 20px !important;
+                }
+
+          # Auto Tracker Card
+          - type: custom:button-card
+            name: Lynk & Co
+            show_name: true
+            entity: device_tracker.lynk_and_co
+            styles:
+              card:
+                - background: rgba(255,255,255,0.08)
+                - backdrop-filter: blur(22px) saturate(150%)
+                - -webkit-backdrop-filter: blur(22px) saturate(150%)
+                - border-radius: 22px
+                - border: 1px solid rgba(255,255,255,0.16)
+                - box-shadow: 0 8px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.22)
+                - padding: 20px
+                - min-height: 320px
+            custom_fields:
+              status: |
+                [[[
+                  return `<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 12px; width: 100%;">
+                    <div style="background: rgba(0,0,0,0.1); padding: 12px; border-radius: 12px; text-align: center; color: white;">
+                      <div style="font-size: 12px; opacity: 0.7;">Battery</div>
+                      <div style="font-size: 18px; font-weight: bold;">0%</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.1); padding: 12px; border-radius: 12px; text-align: center; color: white;">
+                      <div style="font-size: 12px; opacity: 0.7;">Fuel</div>
+                      <div style="font-size: 18px; font-weight: bold;">0%</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.1); padding: 12px; border-radius: 12px; text-align: center; color: white;">
+                      <div style="font-size: 12px; opacity: 0.7;">Lock</div>
+                      <div style="font-size: 18px; font-weight: bold;">🔒</div>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.1); padding: 12px; border-radius: 12px; text-align: center; color: white;">
+                      <div style="font-size: 12px; opacity: 0.7;">Charging</div>
+                      <div style="font-size: 18px; font-weight: bold;">⚡</div>
+                    </div>
+                  </div>`;
+                ]]]
