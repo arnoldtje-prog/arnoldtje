@@ -918,6 +918,11 @@ sections:
               position: relative;
               width: 100%;
               border-radius: 26px;
+              cursor: pointer;
+              transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease;
+            }
+            :host:hover {
+              transform: translateY(-4px);
             }
             :host::before {
               content: "";
@@ -931,6 +936,10 @@ sections:
               mask-composite: exclude;
               filter: saturate(130%);
               pointer-events: none;
+              transition: opacity .25s ease;
+            }
+            :host:hover::before {
+              opacity: 1.6;
             }
             :host::after {
               content: "";
@@ -942,6 +951,10 @@ sections:
               box-shadow: 0 8px 28px rgba(0,0,0,.32);
               -webkit-backdrop-filter: blur(18px) saturate(115%) brightness(88%);
               backdrop-filter: blur(18px) saturate(115%) brightness(88%);
+              transition: box-shadow .25s ease;
+            }
+            :host:hover::after {
+              box-shadow: 0 16px 40px rgba(0,0,0,.45);
             }
         custom_fields:
           stack:
@@ -1407,6 +1420,13 @@ sections:
             - align-self: start
             - justify-self: start
             - color: white
+        tap_action: |
+          [[[
+            return {
+              action: 'navigate',
+              navigation_path: window.location.pathname + '?edit=1'
+            };
+          ]]]
         type: custom:button-card
       - card_mod:
           style: |-
@@ -1415,6 +1435,11 @@ sections:
               position: relative;
               width: 100%;
               border-radius: 26px;
+              cursor: pointer;
+              transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease;
+            }
+            :host:hover {
+              transform: translateY(-4px);
             }
             :host::before {
               content: "";
@@ -1428,6 +1453,10 @@ sections:
               mask-composite: exclude;
               filter: saturate(130%);
               pointer-events: none;
+              transition: opacity .25s ease;
+            }
+            :host:hover::before {
+              opacity: 1.6;
             }
             :host::after {
               content: "";
@@ -1439,6 +1468,10 @@ sections:
               box-shadow: 0 8px 28px rgba(0,0,0,.32);
               -webkit-backdrop-filter: blur(18px) saturate(115%) brightness(88%);
               backdrop-filter: blur(18px) saturate(115%) brightness(88%);
+              transition: box-shadow .25s ease;
+            }
+            :host:hover::after {
+              box-shadow: 0 16px 40px rgba(0,0,0,.45);
             }
             ha-card {
               background: transparent !important;
@@ -1470,6 +1503,11 @@ sections:
               position: relative;
               width: 100%;
               border-radius: 26px;
+              cursor: pointer;
+              transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease;
+            }
+            :host:hover {
+              transform: translateY(-4px);
             }
             :host::before {
               content: "";
@@ -1483,6 +1521,10 @@ sections:
               mask-composite: exclude;
               filter: saturate(130%);
               pointer-events: none;
+              transition: opacity .25s ease;
+            }
+            :host:hover::before {
+              opacity: 1.6;
             }
             :host::after {
               content: "";
@@ -1494,6 +1536,10 @@ sections:
               box-shadow: 0 8px 28px rgba(0,0,0,.32);
               -webkit-backdrop-filter: blur(18px) saturate(115%) brightness(88%);
               backdrop-filter: blur(18px) saturate(115%) brightness(88%);
+              transition: box-shadow .25s ease;
+            }
+            :host:hover::after {
+              box-shadow: 0 16px 40px rgba(0,0,0,.45);
             }
         custom_fields:
           gauge:
@@ -1726,6 +1772,13 @@ sections:
             - grid-template-rows: 1fr 40px
             - grid-template-columns: 100%
             - width: 100%
+        tap_action: |
+          [[[
+            return {
+              action: 'navigate',
+              navigation_path: window.location.pathname + '?edit=1'
+            };
+          ]]]
         type: custom:button-card
       - card_mod:
           style: |-
@@ -1734,6 +1787,11 @@ sections:
               position: relative;
               width: 100%;
               border-radius: 26px;
+              cursor: pointer;
+              transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease;
+            }
+            :host:hover {
+              transform: translateY(-4px);
             }
             :host::before {
               content: "";
@@ -1747,6 +1805,10 @@ sections:
               mask-composite: exclude;
               filter: saturate(130%);
               pointer-events: none;
+              transition: opacity .25s ease;
+            }
+            :host:hover::before {
+              opacity: 1.6;
             }
             :host::after {
               content: "";
@@ -1758,6 +1820,10 @@ sections:
               box-shadow: 0 8px 28px rgba(0,0,0,.32);
               -webkit-backdrop-filter: blur(18px) saturate(115%) brightness(88%);
               backdrop-filter: blur(18px) saturate(115%) brightness(88%);
+              transition: box-shadow .25s ease;
+            }
+            :host:hover::after {
+              box-shadow: 0 16px 40px rgba(0,0,0,.45);
             }
         custom_fields:
           stack:
@@ -2078,7 +2144,14 @@ sections:
             - font-weight: 550
             - padding: 5px 0 0 15px
             - margin: 0 0 -5px 0
-        tap_action:
+        tap_action: |
+          [[[
+            return {
+              action: 'navigate',
+              navigation_path: window.location.pathname + '?edit=1'
+            };
+          ]]]
+        hold_action:
           action: perform-action
           perform_action: homeassistant.update_entity
           target:
