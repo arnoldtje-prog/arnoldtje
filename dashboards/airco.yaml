@@ -163,7 +163,8 @@ views:
                 (function () {
                   if (window.__aircoCarousel) return;
                   window.__aircoCarousel = true;
-                  var BASE = '/airco-dashboard/';
+                  // URL van dit dashboard automatisch bepalen (werkt met elke dashboard-URL)
+                  var BASE = '/' + window.location.pathname.split('/')[1] + '/';
                   var PAGES = ['woonkamer', 'manon', 'zolder'];
                   var FADE_MS = 1000;      // duur van de fade-overgang
                   var INTERVAL_MS = 120000; // wissel elke 2 minuten
@@ -361,7 +362,8 @@ views:
                 (function () {
                   if (window.__aircoCarousel) return;
                   window.__aircoCarousel = true;
-                  var BASE = '/airco-dashboard/';
+                  // URL van dit dashboard automatisch bepalen (werkt met elke dashboard-URL)
+                  var BASE = '/' + window.location.pathname.split('/')[1] + '/';
                   var PAGES = ['woonkamer', 'manon', 'zolder'];
                   var FADE_MS = 1000;      // duur van de fade-overgang
                   var INTERVAL_MS = 120000; // wissel elke 2 minuten
@@ -559,7 +561,8 @@ views:
                 (function () {
                   if (window.__aircoCarousel) return;
                   window.__aircoCarousel = true;
-                  var BASE = '/airco-dashboard/';
+                  // URL van dit dashboard automatisch bepalen (werkt met elke dashboard-URL)
+                  var BASE = '/' + window.location.pathname.split('/')[1] + '/';
                   var PAGES = ['woonkamer', 'manon', 'zolder'];
                   var FADE_MS = 1000;      // duur van de fade-overgang
                   var INTERVAL_MS = 120000; // wissel elke 2 minuten
