@@ -7,3 +7,9 @@ lovelace:
       icon: mdi:file-outline
       show_in_sidebar: true
       filename: dashboards/empty.yaml
+    airco-dashboard:
+      mode: yaml
+      title: Airco's
+      icon: mdi:air-conditioner
+      show_in_sidebar: true
+      filename: dashboards/airco.yaml

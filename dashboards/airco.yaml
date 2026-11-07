@@ -1,0 +1,599 @@
+# Airco-dashboard
+# Drie pagina's, elk voor één airco. Wisselt elke 2 minuten met een fade-overgang.
+# Gegenereerd; layout is identiek op alle pagina's (alleen titel/icoon/entity verschillen).
+title: Airco's
+views:
+  - title: Woonkamer
+    path: woonkamer
+    icon: mdi:sofa
+    type: panel
+    cards:
+      - type: vertical-stack
+        card_mod:
+          style: |
+            :host {
+              max-width: 560px;
+              margin: 0 auto;
+              display: block;
+            }
+        cards:
+          - type: heading
+            heading: Woonkamer
+            heading_style: title
+            icon: mdi:sofa
+          - type: thermostat
+            entity: climate.woonkamer_mhi_air_conditioner
+            name: Woonkamer
+            features:
+              - type: climate-hvac-modes
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: climate.woonkamer_mhi_air_conditioner
+                name: Aan/Uit
+                show_name: true
+                show_icon: true
+                icon: >
+                  [[[ return (entity && entity.state !== 'off') ? 'mdi:power' : 'mdi:power-off'; ]]]
+                tap_action:
+                  action: perform-action
+                  perform_action: climate.toggle
+                  target:
+                    entity_id: climate.woonkamer_mhi_air_conditioner
+                styles:
+                  card:
+                    - height: 64px
+                    - border-radius: 14px
+                    - border: none
+                    - box-shadow: none
+                    - background: >
+                        [[[ return (entity && entity.state !== 'off') ? 'rgba(255,152,0,0.25)' : 'rgba(255,255,255,0.08)'; ]]]
+                  icon:
+                    - width: 26px
+                    - color: >
+                        [[[ return (entity && entity.state !== 'off') ? '#ff9800' : '#cfd8dc'; ]]]
+                  name:
+                    - font-size: 12px
+                    - font-weight: 600
+                    - color: white
+              - type: custom:button-card
+                entity: climate.woonkamer_mhi_air_conditioner
+                name: Laag
+                show_name: true
+                show_icon: true
+                icon: mdi:fan-speed-1
+                tap_action:
+                  action: perform-action
+                  perform_action: climate.set_fan_mode
+                  data:
+                    fan_mode: low
+                  target:
+                    entity_id: climate.woonkamer_mhi_air_conditioner
+                styles:
+                  card:
+                    - height: 64px
+                    - border-radius: 14px
+                    - border: none
+                    - box-shadow: none
+                    - background: >
+                        [[[ return (entity && entity.attributes && (entity.attributes.fan_mode || '').toLowerCase() === 'low') ? 'rgba(255,152,0,0.25)' : 'rgba(255,255,255,0.08)'; ]]]
+                  icon:
+                    - width: 26px
+                    - color: >
+                        [[[ return (entity && entity.attributes && (entity.attributes.fan_mode || '').toLowerCase() === 'low') ? '#ff9800' : '#cfd8dc'; ]]]
+                  name:
+                    - font-size: 12px
+                    - font-weight: 600
+                    - color: white
+              - type: custom:button-card
+                entity: climate.woonkamer_mhi_air_conditioner
+                name: Middel
+                show_name: true
+                show_icon: true
+                icon: mdi:fan-speed-2
+                tap_action:
+                  action: perform-action
+                  perform_action: climate.set_fan_mode
+                  data:
+                    fan_mode: medium
+                  target:
+                    entity_id: climate.woonkamer_mhi_air_conditioner
+                styles:
+                  card:
+                    - height: 64px
+                    - border-radius: 14px
+                    - border: none
+                    - box-shadow: none
+                    - background: >
+                        [[[ return (entity && entity.attributes && (entity.attributes.fan_mode || '').toLowerCase() === 'medium') ? 'rgba(255,152,0,0.25)' : 'rgba(255,255,255,0.08)'; ]]]
+                  icon:
+                    - width: 26px
+                    - color: >
+                        [[[ return (entity && entity.attributes && (entity.attributes.fan_mode || '').toLowerCase() === 'medium') ? '#ff9800' : '#cfd8dc'; ]]]
+                  name:
+                    - font-size: 12px
+                    - font-weight: 600
+                    - color: white
+              - type: custom:button-card
+                entity: climate.woonkamer_mhi_air_conditioner
+                name: Hoog
+                show_name: true
+                show_icon: true
+                icon: mdi:fan-speed-3
+                tap_action:
+                  action: perform-action
+                  perform_action: climate.set_fan_mode
+                  data:
+                    fan_mode: high
+                  target:
+                    entity_id: climate.woonkamer_mhi_air_conditioner
+                styles:
+                  card:
+                    - height: 64px
+                    - border-radius: 14px
+                    - border: none
+                    - box-shadow: none
+                    - background: >
+                        [[[ return (entity && entity.attributes && (entity.attributes.fan_mode || '').toLowerCase() === 'high') ? 'rgba(255,152,0,0.25)' : 'rgba(255,255,255,0.08)'; ]]]
+                  icon:
+                    - width: 26px
+                    - color: >
+                        [[[ return (entity && entity.attributes && (entity.attributes.fan_mode || '').toLowerCase() === 'high') ? '#ff9800' : '#cfd8dc'; ]]]
+                  name:
+                    - font-size: 12px
+                    - font-weight: 600
+                    - color: white
+          - type: markdown
+            content: >
+              {% set e = 'climate.woonkamer_mhi_air_conditioner' %}
+              {% set modi = {'off':'Uit','heat':'Verwarmen','cool':'Koelen','dry':'Ontvochtigen','fan_only':'Ventileren','auto':'Automatisch','heat_cool':'Automatisch'} %}
+              {% set vent = {'low':'Laag','medium':'Middel','high':'Hoog','auto':'Automatisch','quiet':'Stil'} %}
+              **Huidige temperatuur:** {{ state_attr(e,'current_temperature') }} °C &nbsp;·&nbsp;
+              **Ingesteld:** {{ state_attr(e,'temperature') }} °C<br>
+              **Modus:** {{ modi.get(states(e), states(e)) }} &nbsp;·&nbsp;
+              **Ventilator:** {{ vent.get((state_attr(e,'fan_mode')|string|lower), state_attr(e,'fan_mode')) }}
+          - type: custom:button-card
+            entity: climate.woonkamer_mhi_air_conditioner
+            show_icon: false
+            show_name: false
+            show_state: false
+            show_label: true
+            label: |
+              [[[
+                (function () {
+                  if (window.__aircoCarousel) return;
+                  window.__aircoCarousel = true;
+                  var BASE = '/airco-dashboard/';
+                  var PAGES = ['woonkamer', 'manon', 'zolder'];
+                  var FADE_MS = 1000;      // duur van de fade-overgang
+                  var INTERVAL_MS = 120000; // wissel elke 2 minuten
+                  function huidigeIndex() {
+                    var p = window.location.pathname;
+                    for (var i = 0; i < PAGES.length; i++) {
+                      if (p.indexOf(BASE + PAGES[i]) === 0) return i;
+                    }
+                    return -1;
+                  }
+                  function wissel() {
+                    var idx = huidigeIndex();
+                    if (idx < 0) return; // alleen cyclen op de airco-pagina's
+                    var volgende = BASE + PAGES[(idx + 1) % PAGES.length];
+                    var el = document.body;
+                    el.style.transition = 'opacity ' + (FADE_MS / 1000) + 's ease';
+                    el.style.opacity = '0';
+                    setTimeout(function () {
+                      history.pushState(null, '', volgende);
+                      window.dispatchEvent(new Event('location-changed'));
+                      el.style.opacity = '1';
+                    }, FADE_MS);
+                  }
+                  window.__aircoTimer = setInterval(wissel, INTERVAL_MS);
+                })();
+                return '';
+              ]]]
+            styles:
+              card:
+                - height: 0px
+                - min-height: 0px
+                - padding: 0
+                - margin: 0
+                - border: none
+                - box-shadow: none
+                - background: transparent
+                - overflow: hidden
+  - title: Slaapkamer Manon
+    path: manon
+    icon: mdi:bed
+    type: panel
+    cards:
+      - type: vertical-stack
+        card_mod:
+          style: |
+            :host {
+              max-width: 560px;
+              margin: 0 auto;
+              display: block;
+            }
+        cards:
+          - type: heading
+            heading: Slaapkamer Manon
+            heading_style: title
+            icon: mdi:bed
+          - type: thermostat
+            entity: climate.slaapkamer_manon_mhi_air_conditioner
+            name: Slaapkamer Manon
+            features:
+              - type: climate-hvac-modes
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: climate.slaapkamer_manon_mhi_air_conditioner
+                name: Aan/Uit
+                show_name: true
+                show_icon: true
+                icon: >
+                  [[[ return (entity && entity.state !== 'off') ? 'mdi:power' : 'mdi:power-off'; ]]]
+                tap_action:
+                  action: perform-action
+                  perform_action: climate.toggle
+                  target:
+                    entity_id: climate.slaapkamer_manon_mhi_air_conditioner
+                styles:
+                  card:
+                    - height: 64px
+                    - border-radius: 14px
+                    - border: none
+                    - box-shadow: none
+                    - background: >
+                        [[[ return (entity && entity.state !== 'off') ? 'rgba(255,152,0,0.25)' : 'rgba(255,255,255,0.08)'; ]]]
+                  icon:
+                    - width: 26px
+                    - color: >
+                        [[[ return (entity && entity.state !== 'off') ? '#ff9800' : '#cfd8dc'; ]]]
+                  name:
+                    - font-size: 12px
+                    - font-weight: 600
+                    - color: white
+              - type: custom:button-card
+                entity: climate.slaapkamer_manon_mhi_air_conditioner
+                name: Laag
+                show_name: true
+                show_icon: true
+                icon: mdi:fan-speed-1
+                tap_action:
+                  action: perform-action
+                  perform_action: climate.set_fan_mode
+                  data:
+                    fan_mode: low
+                  target:
+                    entity_id: climate.slaapkamer_manon_mhi_air_conditioner
+                styles:
+                  card:
+                    - height: 64px
+                    - border-radius: 14px
+                    - border: none
+                    - box-shadow: none
+                    - background: >
+                        [[[ return (entity && entity.attributes && (entity.attributes.fan_mode || '').toLowerCase() === 'low') ? 'rgba(255,152,0,0.25)' : 'rgba(255,255,255,0.08)'; ]]]
+                  icon:
+                    - width: 26px
+                    - color: >
+                        [[[ return (entity && entity.attributes && (entity.attributes.fan_mode || '').toLowerCase() === 'low') ? '#ff9800' : '#cfd8dc'; ]]]
+                  name:
+                    - font-size: 12px
+                    - font-weight: 600
+                    - color: white
+              - type: custom:button-card
+                entity: climate.slaapkamer_manon_mhi_air_conditioner
+                name: Middel
+                show_name: true
+                show_icon: true
+                icon: mdi:fan-speed-2
+                tap_action:
+                  action: perform-action
+                  perform_action: climate.set_fan_mode
+                  data:
+                    fan_mode: medium
+                  target:
+                    entity_id: climate.slaapkamer_manon_mhi_air_conditioner
+                styles:
+                  card:
+                    - height: 64px
+                    - border-radius: 14px
+                    - border: none
+                    - box-shadow: none
+                    - background: >
+                        [[[ return (entity && entity.attributes && (entity.attributes.fan_mode || '').toLowerCase() === 'medium') ? 'rgba(255,152,0,0.25)' : 'rgba(255,255,255,0.08)'; ]]]
+                  icon:
+                    - width: 26px
+                    - color: >
+                        [[[ return (entity && entity.attributes && (entity.attributes.fan_mode || '').toLowerCase() === 'medium') ? '#ff9800' : '#cfd8dc'; ]]]
+                  name:
+                    - font-size: 12px
+                    - font-weight: 600
+                    - color: white
+              - type: custom:button-card
+                entity: climate.slaapkamer_manon_mhi_air_conditioner
+                name: Hoog
+                show_name: true
+                show_icon: true
+                icon: mdi:fan-speed-3
+                tap_action:
+                  action: perform-action
+                  perform_action: climate.set_fan_mode
+                  data:
+                    fan_mode: high
+                  target:
+                    entity_id: climate.slaapkamer_manon_mhi_air_conditioner
+                styles:
+                  card:
+                    - height: 64px
+                    - border-radius: 14px
+                    - border: none
+                    - box-shadow: none
+                    - background: >
+                        [[[ return (entity && entity.attributes && (entity.attributes.fan_mode || '').toLowerCase() === 'high') ? 'rgba(255,152,0,0.25)' : 'rgba(255,255,255,0.08)'; ]]]
+                  icon:
+                    - width: 26px
+                    - color: >
+                        [[[ return (entity && entity.attributes && (entity.attributes.fan_mode || '').toLowerCase() === 'high') ? '#ff9800' : '#cfd8dc'; ]]]
+                  name:
+                    - font-size: 12px
+                    - font-weight: 600
+                    - color: white
+          - type: markdown
+            content: >
+              {% set e = 'climate.slaapkamer_manon_mhi_air_conditioner' %}
+              {% set modi = {'off':'Uit','heat':'Verwarmen','cool':'Koelen','dry':'Ontvochtigen','fan_only':'Ventileren','auto':'Automatisch','heat_cool':'Automatisch'} %}
+              {% set vent = {'low':'Laag','medium':'Middel','high':'Hoog','auto':'Automatisch','quiet':'Stil'} %}
+              **Huidige temperatuur:** {{ state_attr(e,'current_temperature') }} °C &nbsp;·&nbsp;
+              **Ingesteld:** {{ state_attr(e,'temperature') }} °C<br>
+              **Modus:** {{ modi.get(states(e), states(e)) }} &nbsp;·&nbsp;
+              **Ventilator:** {{ vent.get((state_attr(e,'fan_mode')|string|lower), state_attr(e,'fan_mode')) }}
+          - type: custom:button-card
+            entity: climate.slaapkamer_manon_mhi_air_conditioner
+            show_icon: false
+            show_name: false
+            show_state: false
+            show_label: true
+            label: |
+              [[[
+                (function () {
+                  if (window.__aircoCarousel) return;
+                  window.__aircoCarousel = true;
+                  var BASE = '/airco-dashboard/';
+                  var PAGES = ['woonkamer', 'manon', 'zolder'];
+                  var FADE_MS = 1000;      // duur van de fade-overgang
+                  var INTERVAL_MS = 120000; // wissel elke 2 minuten
+                  function huidigeIndex() {
+                    var p = window.location.pathname;
+                    for (var i = 0; i < PAGES.length; i++) {
+                      if (p.indexOf(BASE + PAGES[i]) === 0) return i;
+                    }
+                    return -1;
+                  }
+                  function wissel() {
+                    var idx = huidigeIndex();
+                    if (idx < 0) return; // alleen cyclen op de airco-pagina's
+                    var volgende = BASE + PAGES[(idx + 1) % PAGES.length];
+                    var el = document.body;
+                    el.style.transition = 'opacity ' + (FADE_MS / 1000) + 's ease';
+                    el.style.opacity = '0';
+                    setTimeout(function () {
+                      history.pushState(null, '', volgende);
+                      window.dispatchEvent(new Event('location-changed'));
+                      el.style.opacity = '1';
+                    }, FADE_MS);
+                  }
+                  window.__aircoTimer = setInterval(wissel, INTERVAL_MS);
+                })();
+                return '';
+              ]]]
+            styles:
+              card:
+                - height: 0px
+                - min-height: 0px
+                - padding: 0
+                - margin: 0
+                - border: none
+                - box-shadow: none
+                - background: transparent
+                - overflow: hidden
+  - title: Zolder
+    path: zolder
+    icon: mdi:home-roof
+    type: panel
+    cards:
+      - type: vertical-stack
+        card_mod:
+          style: |
+            :host {
+              max-width: 560px;
+              margin: 0 auto;
+              display: block;
+            }
+        cards:
+          - type: heading
+            heading: Zolder
+            heading_style: title
+            icon: mdi:home-roof
+          - type: thermostat
+            entity: climate.zolder_mhi_air_conditioner
+            name: Zolder
+            features:
+              - type: climate-hvac-modes
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: climate.zolder_mhi_air_conditioner
+                name: Aan/Uit
+                show_name: true
+                show_icon: true
+                icon: >
+                  [[[ return (entity && entity.state !== 'off') ? 'mdi:power' : 'mdi:power-off'; ]]]
+                tap_action:
+                  action: perform-action
+                  perform_action: climate.toggle
+                  target:
+                    entity_id: climate.zolder_mhi_air_conditioner
+                styles:
+                  card:
+                    - height: 64px
+                    - border-radius: 14px
+                    - border: none
+                    - box-shadow: none
+                    - background: >
+                        [[[ return (entity && entity.state !== 'off') ? 'rgba(255,152,0,0.25)' : 'rgba(255,255,255,0.08)'; ]]]
+                  icon:
+                    - width: 26px
+                    - color: >
+                        [[[ return (entity && entity.state !== 'off') ? '#ff9800' : '#cfd8dc'; ]]]
+                  name:
+                    - font-size: 12px
+                    - font-weight: 600
+                    - color: white
+              - type: custom:button-card
+                entity: climate.zolder_mhi_air_conditioner
+                name: Laag
+                show_name: true
+                show_icon: true
+                icon: mdi:fan-speed-1
+                tap_action:
+                  action: perform-action
+                  perform_action: climate.set_fan_mode
+                  data:
+                    fan_mode: low
+                  target:
+                    entity_id: climate.zolder_mhi_air_conditioner
+                styles:
+                  card:
+                    - height: 64px
+                    - border-radius: 14px
+                    - border: none
+                    - box-shadow: none
+                    - background: >
+                        [[[ return (entity && entity.attributes && (entity.attributes.fan_mode || '').toLowerCase() === 'low') ? 'rgba(255,152,0,0.25)' : 'rgba(255,255,255,0.08)'; ]]]
+                  icon:
+                    - width: 26px
+                    - color: >
+                        [[[ return (entity && entity.attributes && (entity.attributes.fan_mode || '').toLowerCase() === 'low') ? '#ff9800' : '#cfd8dc'; ]]]
+                  name:
+                    - font-size: 12px
+                    - font-weight: 600
+                    - color: white
+              - type: custom:button-card
+                entity: climate.zolder_mhi_air_conditioner
+                name: Middel
+                show_name: true
+                show_icon: true
+                icon: mdi:fan-speed-2
+                tap_action:
+                  action: perform-action
+                  perform_action: climate.set_fan_mode
+                  data:
+                    fan_mode: medium
+                  target:
+                    entity_id: climate.zolder_mhi_air_conditioner
+                styles:
+                  card:
+                    - height: 64px
+                    - border-radius: 14px
+                    - border: none
+                    - box-shadow: none
+                    - background: >
+                        [[[ return (entity && entity.attributes && (entity.attributes.fan_mode || '').toLowerCase() === 'medium') ? 'rgba(255,152,0,0.25)' : 'rgba(255,255,255,0.08)'; ]]]
+                  icon:
+                    - width: 26px
+                    - color: >
+                        [[[ return (entity && entity.attributes && (entity.attributes.fan_mode || '').toLowerCase() === 'medium') ? '#ff9800' : '#cfd8dc'; ]]]
+                  name:
+                    - font-size: 12px
+                    - font-weight: 600
+                    - color: white
+              - type: custom:button-card
+                entity: climate.zolder_mhi_air_conditioner
+                name: Hoog
+                show_name: true
+                show_icon: true
+                icon: mdi:fan-speed-3
+                tap_action:
+                  action: perform-action
+                  perform_action: climate.set_fan_mode
+                  data:
+                    fan_mode: high
+                  target:
+                    entity_id: climate.zolder_mhi_air_conditioner
+                styles:
+                  card:
+                    - height: 64px
+                    - border-radius: 14px
+                    - border: none
+                    - box-shadow: none
+                    - background: >
+                        [[[ return (entity && entity.attributes && (entity.attributes.fan_mode || '').toLowerCase() === 'high') ? 'rgba(255,152,0,0.25)' : 'rgba(255,255,255,0.08)'; ]]]
+                  icon:
+                    - width: 26px
+                    - color: >
+                        [[[ return (entity && entity.attributes && (entity.attributes.fan_mode || '').toLowerCase() === 'high') ? '#ff9800' : '#cfd8dc'; ]]]
+                  name:
+                    - font-size: 12px
+                    - font-weight: 600
+                    - color: white
+          - type: markdown
+            content: >
+              {% set e = 'climate.zolder_mhi_air_conditioner' %}
+              {% set modi = {'off':'Uit','heat':'Verwarmen','cool':'Koelen','dry':'Ontvochtigen','fan_only':'Ventileren','auto':'Automatisch','heat_cool':'Automatisch'} %}
+              {% set vent = {'low':'Laag','medium':'Middel','high':'Hoog','auto':'Automatisch','quiet':'Stil'} %}
+              **Huidige temperatuur:** {{ state_attr(e,'current_temperature') }} °C &nbsp;·&nbsp;
+              **Ingesteld:** {{ state_attr(e,'temperature') }} °C<br>
+              **Modus:** {{ modi.get(states(e), states(e)) }} &nbsp;·&nbsp;
+              **Ventilator:** {{ vent.get((state_attr(e,'fan_mode')|string|lower), state_attr(e,'fan_mode')) }}
+          - type: custom:button-card
+            entity: climate.zolder_mhi_air_conditioner
+            show_icon: false
+            show_name: false
+            show_state: false
+            show_label: true
+            label: |
+              [[[
+                (function () {
+                  if (window.__aircoCarousel) return;
+                  window.__aircoCarousel = true;
+                  var BASE = '/airco-dashboard/';
+                  var PAGES = ['woonkamer', 'manon', 'zolder'];
+                  var FADE_MS = 1000;      // duur van de fade-overgang
+                  var INTERVAL_MS = 120000; // wissel elke 2 minuten
+                  function huidigeIndex() {
+                    var p = window.location.pathname;
+                    for (var i = 0; i < PAGES.length; i++) {
+                      if (p.indexOf(BASE + PAGES[i]) === 0) return i;
+                    }
+                    return -1;
+                  }
+                  function wissel() {
+                    var idx = huidigeIndex();
+                    if (idx < 0) return; // alleen cyclen op de airco-pagina's
+                    var volgende = BASE + PAGES[(idx + 1) % PAGES.length];
+                    var el = document.body;
+                    el.style.transition = 'opacity ' + (FADE_MS / 1000) + 's ease';
+                    el.style.opacity = '0';
+                    setTimeout(function () {
+                      history.pushState(null, '', volgende);
+                      window.dispatchEvent(new Event('location-changed'));
+                      el.style.opacity = '1';
+                    }, FADE_MS);
+                  }
+                  window.__aircoTimer = setInterval(wissel, INTERVAL_MS);
+                })();
+                return '';
+              ]]]
+            styles:
+              card:
+                - height: 0px
+                - min-height: 0px
+                - padding: 0
+                - margin: 0
+                - border: none
+                - box-shadow: none
+                - background: transparent
+                - overflow: hidden
