@@ -1,0 +1,5 @@
+title: Empty
+views:
+  - title: Home
+    path: home
+    cards: []
